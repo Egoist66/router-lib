@@ -1,0 +1,26 @@
+
+.header {
+  background: darkcyan;
+  padding: 20px;
+}
+.navBar {
+  display: flex;
+  justify-content: flex-start;
+
+  & .navBarList {
+    list-style: none;
+    gap: 20px;
+    display: flex;
+
+    & .navBarListItems {
+      color: white;
+    }
+
+  }
+}
+
+.appContainer {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 20px;
+}
