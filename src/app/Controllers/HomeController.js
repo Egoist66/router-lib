@@ -7,7 +7,6 @@ export class HomeController extends Controller{
 
     static view(param = null){
 
-        console.log(param)
         View.render(this.place, Home)
     }
 }

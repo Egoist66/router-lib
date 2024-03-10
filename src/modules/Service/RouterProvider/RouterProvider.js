@@ -10,7 +10,13 @@ export class RouterProvider extends  Provider {
     }
 
     init() {
-        RouterProvider.router = new Router(routesConfig)
-        RouterProvider.router.init()
+        try {
+
+            RouterProvider.router = new Router(routesConfig)
+            RouterProvider.router.init()
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 }

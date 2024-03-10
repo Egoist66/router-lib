@@ -7,8 +7,13 @@ import './src/resources/index.scss'
 
 const Default = Template()
 
-app.init((router) => {
-    View.render('#app', () => Default)
-    router.matchRoute()
-})
+try {
+    app.init((router) => {
+        View.render('#app', () => Default)
+        router.matchRoute()
+    })
+}
+catch (e) {
+    console.log(e)
+}
 

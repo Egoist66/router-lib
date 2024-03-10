@@ -1,8 +1,12 @@
 import {UrlParser} from "../../Helper/UrlParser.js";
 import {Page404Controller} from "../../../app/Controllers/Page404Controller.js";
+import {ActiveLink} from "../../Helper/ActiveLink.js";
+import {Singleton} from "../../Helper/Singleton.js";
 
 export class Router {
-    static #instance = null
+    static instance = null
+
+
     #routes = {
         routesMap: []
     }
@@ -26,17 +30,20 @@ export class Router {
         this.#notFound = notFound
 
 
-        this.matchRoute()
+        window.addEventListener('load', () => {
+
+            this.matchRoute()
+            this.linkElements = document.querySelectorAll(this.#links.selector)
+            ActiveLink.matchLinkToHighlight(this.linkElements)
+        })
+
+
         window.addEventListener('popstate', (e) => {
             this.matchRoute(e)
         })
 
-        if (Router.#instance === null) {
-            Router.#instance = this
-        } else {
-            console.warn(`Router instance can be as the only object`)
-            return Router.#instance
-        }
+        return Singleton.only(Router, 'instance', this)
+
 
     }
 
@@ -47,7 +54,7 @@ export class Router {
     }
 
     matchRoute() {
-        if(this.#notFound === 'Page404Controller'){
+        if (this.#notFound === 'Page404Controller') {
             Page404Controller.view()
         }
 
@@ -64,9 +71,6 @@ export class Router {
                 }
 
 
-
-
-
             }
         })
     }
@@ -77,17 +81,22 @@ export class Router {
 
     init() {
         window.addEventListener('load', () => {
-            const elems = document.querySelectorAll(this.#links.selector)
 
-            if (elems.length) {
-                elems.forEach(elem => {
+            if (this.linkElements.length) {
+                this.linkElements.forEach(elem => {
+
                     elem.addEventListener('click', (e) => {
                         e.preventDefault()
+
+                        ActiveLink.off(this.linkElements, 'active')
+                        ActiveLink.highlight(elem, 'active')
 
 
                         this.#route(elem.getAttribute('href'))
                         this.matchRoute()
                     })
+
+
                 })
             }
         })

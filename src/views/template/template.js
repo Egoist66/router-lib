@@ -14,9 +14,9 @@ export const Template = Trimmer.withTrimView((component = () => '') => {
                 <div class="${appContainer}">
                    <nav class=${navBar}>
                         <ul class=${navBarList}>
-                             <li><a class=${navBarListItems} href="/">Main</a></li>  
-                             <li><a class=${navBarListItems} href="/users">Users</a></li>
-                             <li><a class=${navBarListItems} href="/user/2">User</a></li>
+                             <li><a data-active="true"  class=${navBarListItems} href="/">Main</a></li>  
+                             <li><a data-active="true" class=${navBarListItems} href="/users">Users</a></li>
+                             <li><a data-active="true" class=${navBarListItems} href="/user/2">User</a></li>
                         </ul>
                     </nav>
                 </div>

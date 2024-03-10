@@ -8,7 +8,7 @@ import {
 
 export const routesConfig = {
     links: {
-        selector: 'a'
+        selector: 'header nav a'
     },
     notFound: 'Page404Controller',
     watch: (routesMap) => console.log(routesMap),
@@ -24,7 +24,7 @@ export const routesConfig = {
         },
         {
             pattern: '/user/:id',
-            render: (path,params) => UserController.view(params)
+            render: (path, params) => UserController.view(params)
         },
 
     ]
