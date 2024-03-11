@@ -1,4 +1,6 @@
-export const Home = () => {
+import {memo} from "../utils/memo.js";
+
+export const Home = memo(() => {
     return (
         `
         
@@ -7,4 +9,4 @@ export const Home = () => {
         
         `
     )
-}
+})

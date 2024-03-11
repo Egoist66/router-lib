@@ -2,6 +2,7 @@ import {UrlParser} from "../../Helper/UrlParser.js";
 import {Page404Controller} from "../../../app/Controllers/Page404Controller.js";
 import {ActiveLink} from "../../Helper/ActiveLink.js";
 import {Singleton} from "../../Helper/Singleton.js";
+import {FallBackNotFound} from "../../Helper/FallBackNotFound.js";
 
 export class Router {
     static instance = null
@@ -34,6 +35,8 @@ export class Router {
 
             this.matchRoute()
             this.linkElements = document.querySelectorAll(this.#links.selector)
+
+            //FallBackNotFound.view(this.linkElements, this.#paths, Page404Controller.view)
             ActiveLink.matchLinkToHighlight(this.linkElements)
         })
 
@@ -54,9 +57,7 @@ export class Router {
     }
 
     matchRoute() {
-        if (this.#notFound === 'Page404Controller') {
-            Page404Controller.view()
-        }
+
 
         this?.#paths?.forEach((option, i) => {
 
@@ -66,6 +67,8 @@ export class Router {
 
                     this.#routes.routesMap = [...this.#routes.routesMap, option.pattern]
                     this.#watchRoute(this.#watch)
+
+
                     option.render(option.pattern, UrlParser.params)
                     break;
                 }

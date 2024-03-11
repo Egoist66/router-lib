@@ -1,10 +1,10 @@
 import {memo} from "../utils/memo.js";
 
-export const User = memo((id = null) => {
+export const page404 = memo(() => {
     return (
         `
         
-            <h2>User id - ${id}</h2>
+            <h2>Not found</h2>
         
         
         `

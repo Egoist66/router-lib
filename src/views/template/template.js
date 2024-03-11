@@ -5,9 +5,10 @@ import {
     header,
     appContainer,
     navBarListItems
-} from '../../resources/template.module.scss'
+} from '../../resources/css/template.module.scss'
+import {memo} from "../../utils/memo.js";
 
-export const Template = Trimmer.withTrimView((component = () => '') => {
+export const Template = memo(Trimmer.withTrimView((component = () => '') => {
     return (
         `
            <header class=${header}>
@@ -25,5 +26,5 @@ export const Template = Trimmer.withTrimView((component = () => '') => {
         
         `
     )
-})
+}))
 

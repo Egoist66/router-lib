@@ -1,3 +1,5 @@
+import {Page404Controller} from "../../app/Controllers/Page404Controller.js";
+
 export class ActiveLink {
 
     static matchLinkToHighlight(links) {
@@ -28,6 +30,7 @@ export class ActiveLink {
         if (link.getAttribute('href') === location.pathname) {
             link.classList.add(attr)
         }
+
     }
 
 
